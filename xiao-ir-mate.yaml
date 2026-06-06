@@ -34,10 +34,14 @@ wifi:
 captive_portal:
 
 # IR blaster on the XIAO IR Mate carrier board.
+# non_blocking: false — transmit synchronously so back-to-back commands (e.g. an
+# automation calling set_hvac_mode + set_fan_mode) are serialized instead of
+# colliding mid-air, which produced corrupted frames the AC ignored.
 remote_transmitter:
   id: ir_tx
   pin: GPIO3
   carrier_duty_percent: 50%
+  non_blocking: false
 
 # IR receiver — lets the climate component sync state when the physical remote
 # is used. midea_ir understands both Midea and Coolix protocols on receive.
