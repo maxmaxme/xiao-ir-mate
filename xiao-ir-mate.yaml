@@ -21,6 +21,11 @@ ota:
 wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
+  # ESP32 defaults to LIGHT power-save, which sleeps the radio between beacons
+  # and causes API disconnects/latency on marginal links (e.g. a far room at
+  # ~-73 dBm). NONE keeps the radio awake — far more stable, negligible extra
+  # power for a USB-powered IR blaster.
+  power_save_mode: none
   # Fallback AP if Wi-Fi is unreachable.
   ap:
     ssid: "Xiao IR Mate Fallback"
