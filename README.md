@@ -22,6 +22,13 @@ Copy `secrets.yaml.example` → `secrets.yaml` (gitignored) and fill in your Wi-
 credentials. `ota_password` is preset to the Seeed factory OTA password so the
 first over-the-air flash authenticates against the stock firmware.
 
+`room_temp_entity` is the Home Assistant temperature sensor for the room this
+unit controls — it feeds the climate entity's `current_temperature`. It's a
+secret so the private entity name stays out of this public repo. Since one
+firmware serves every unit, **set `room_temp_entity` to the correct room's
+sensor before flashing each device** (and before re-flashing, double-check it
+still points at that device's room).
+
 ## Flashing (OTA, no USB)
 
 The device ships with ESPHome factory firmware already on Wi-Fi, so flashing is

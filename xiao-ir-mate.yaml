@@ -43,6 +43,20 @@ remote_receiver:
     number: GPIO4
     inverted: true
 
+# Pull this room's temperature from a Home Assistant sensor so the climate
+# entity reports current_temperature. The entity_id lives in secrets.yaml
+# (per-device): set it to the right room's sensor before flashing each unit.
+# internal: true — used only to feed the climate; not re-exposed back to HA.
+sensor:
+  - platform: homeassistant
+    id: room_temp
+    entity_id: !secret room_temp_entity
+    internal: true
+  - platform: homeassistant
+    id: room_humidity
+    entity_id: !secret room_humidity_entity
+    internal: true
+
 climate:
   - platform: midea_ir
     name: "Midea AC"
@@ -51,6 +65,8 @@ climate:
     use_fahrenheit: false
     supports_cool: true
     supports_heat: true
+    sensor: room_temp
+    humidity_sensor: room_humidity
 
 # LED/display toggle: midea_ir doesn't expose it, so we send the raw Midea
 # "special" frame directly. Code is the proven `midea:button=led` command
