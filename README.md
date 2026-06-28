@@ -47,3 +47,10 @@ USB-C is only a recovery fallback.
 A factory-fresh XIAO IR Mate raises an AP `XIAO IR Mate` (password `12345678`).
 Connect, open `http://192.168.4.1`, pick your 2.4 GHz SSID. Once it joins Wi-Fi,
 flash it OTA as above.
+
+## License
+
+[MIT](LICENSE) © 2026 maxmaxme. This repo is just an ESPHome firmware config (no
+custom C++), kept permissive so it's freely reusable. Note that the *compiled
+binary* links ESPHome's own GPLv3 runtime — that's a property of ESPHome, not of
+this config.
